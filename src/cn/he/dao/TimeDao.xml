@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="cn.he.dao.TimeDao">
+		<select id="listTimeAll" resultType="Time">
+			select * from movietime
+		</select>
+		<select id="listFindStarTime" resultType="Time">
+			select * from starttime where filmName=#{filmName} and time=#{time}
+		</select>
+		<select id="listFilmname" resultType="Time">
+			select filmName from film
+		</select>
+		<select id="findByStarTime" resultType="Time">
+			select * from movietime where id=#{id}
+		</select>
+		<insert id="addTime" >
+			insert into movietime values(null, #{filmName}, #{time} )
+		</insert>
+		<insert id="addvalue" >
+			insert into starttime values(null, #{filmName}, #{time},#{starTime} )
+		</insert>
+		<delete id="deleteTime" parameterType="Long">
+			delete from movietime where id = #{id}
+		</delete>
+		<delete id="deleteTimePoint" parameterType="Long">
+			delete from starttime where id = #{id}
+		</delete>
+		</mapper>

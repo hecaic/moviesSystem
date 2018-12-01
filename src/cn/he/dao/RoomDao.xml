@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="cn.he.dao.RoomDao">
+		<select id="listRoomAll" resultType="Room">
+			select * from room
+		</select>
+		<select id="findByRoomNuber" resultType="Room">
+			select * from room where roomNuber=#{roomNuber}
+		</select>
+		<select id="findById" resultType="Room">
+			select * from room where id=#{id}
+		</select>
+		<select id="findByRoomName" resultType="Room">
+			select roomNuber from room where roomName=#{roomName}
+		</select>
+		
+		<insert id="addRoom" >
+			insert into room values(null, #{roomName}, #{roomNuber} )
+		</insert>
+		
+		<update id="updateRoom" parameterType="Room">
+			update room  
+			<set>
+				<if test="roomName != null">
+				roomName=#{roomName},
+				</if>
+				<if test="roomNuber != null">
+				roomNuber=#{roomNuber},
+				
+				</if>
+				
+			</set>
+			  where id=#{id}
+		</update>
+		
+		<delete id="deleteRoom" parameterType="Long">
+			delete from room where id = #{id}
+		</delete>
+	
+	
+	
+	</mapper>

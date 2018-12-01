@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="cn.he.dao.FilmDao">
+		<select id="listFilmAll" resultType="Film">
+			select * from film
+		</select>
+			<select id="findByFilmId" resultType="Film">
+			select * from film where filmId=#{filmId}
+		</select>
+		<select id="findByMovieTime" resultType="Film">
+			select * from movieTime where filmName=#{filmName}
+		</select>
+		<select id="queryFilmByName" resultType="Film">
+			select * from film where filmName=#{filmName}
+		</select>
+		<select id="queryFilmByType" resultType="Film">
+			select * from film  where filmType=#{filmType}
+		</select>
+		<select id="queryFilmByLanguag" resultType="Film">
+			select * from film where filmLanguage=#{filmLanguage}
+		</select>
+		<select id="queryFilmByTypeAndLanguag" resultType="Film">
+			select * from film where filmLanguage=#{filmLanguage} and filmType=#{filmType}
+		</select>
+		<select id="queryFilmByTypeName"  resultType="Film">
+			select * from film where filmType=#{filmType} and filmName=#{filmName}
+		</select>
+		<select id="queryFilmByLanguagName" resultType="Film">
+			select * from film where filmName=#{filmName} and filmLanguage=#{filmLanguage}
+		</select>
+		<select id="queryFilmByLanguagNameType" resultType="Film">
+			select * from film where filmLanguage=#{filmLanguage} and filmName=#{filmName} and filmType=#{filmType}
+		</select>
+		
+		<insert id="addFilm" >
+			insert into film values(null, #{filmName}, #{filmType} ,#{playType},#{filmLanguage},#{filmLong},#{filmState},#{price},#{director},#{filmImg},#{actor},#{address},#{jianJie})
+		</insert>
+		
+		<update id="updateFilm" parameterType="Film">
+			update film  
+			<set>
+				<if test="filmName != null">
+				filmName=#{filmName},
+				</if>
+				<if test="filmType != null">
+				filmType=#{filmType},
+				
+				</if>
+				<if test="filmLanguage != null">
+				filmLanguage=#{filmLanguage},
+				
+				</if>
+				<if test="filmLong != null">
+				filmLong=#{filmLong},
+				</if>
+				<if test="filmState != null">
+				filmState=#{filmState},
+				</if>
+				<if test="price != null">
+				price=#{price},
+				</if>
+				<if test="director != null">
+				director=#{director},
+				</if>
+				<if test="actor != null">
+				actor=#{actor},
+				</if>
+				<if test="filmImg != null">
+				filmImg=#{filmImg},
+				</if>
+				<if test="address != null">
+				address=#{address},
+				</if>
+				<if test="jianJie != null">
+				jianJie=#{jianJie},
+				</if>
+			</set>
+			  where filmId=#{filmId}
+		</update>
+		
+		<delete id="deleteFilm" parameterType="Long">
+			delete from film where filmId = #{filmId}
+		</delete>
+	
+	
+	
+	</mapper>

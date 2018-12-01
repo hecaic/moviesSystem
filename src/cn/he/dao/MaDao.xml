@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="cn.he.dao.MaDao">
+		
+		<select id="findById" resultType="Ma">
+			select * from admin where userid=#{userid}
+		</select>
+		<select id="findByLoginName" resultType="Ma">
+			select * from admin where loginname=#{loginname}
+		</select>
+		<insert id="addMa" >
+			insert into admin values(null, #{loginname}, #{password})
+		</insert>
+		
+		<update id="updateMa" parameterType="Ma">
+			update admin  
+			<set>
+				<if test="loginname != null">
+				loginname=#{loginname},
+				</if>
+				<if test="password != null">
+				password=#{password},
+				
+				</if>
+				
+				
+			</set>
+			  where userid=#{userid}
+		</update>
+		
+		<delete id="deleteMa" parameterType="Long">
+			delete from admin where userid = #{userid}
+		</delete>
+	
+		
+	
+	</mapper>

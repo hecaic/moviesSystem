@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="cn.he.dao.testDao">
+	
+	
+	<select id="queryFilmId" resultType="Test">
+			select roomName,price,filmName,roomNuber,playType,filmLanguage from film,room where address=roomName and filmName=#{filmName}
+		</select>
+	
+	<select id="querySeats" resultType="Test">
+			select totalCound,Ptime from sum where filmName=#{filmName} and Ptime=#{Ptime}
+		</select>
+		
+	<select id="querytime" resultType="Test">
+			select time from movietime where  filmName=#{filmName} and time=#{time}
+		</select>
+	
+	
+	
+		</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="cn.he.dao.SumDao">
+		<select id="listSumAll" resultType="Sum">
+			select * from sum
+		</select>
+		<select id="listFilmName" resultType="Sum">
+			select filmName from film
+		</select>
+		<select id="listSum" resultType="Sum">
+			select ticketOffice from sum where filmName=#{filmName}
+		</select>
+		<insert id="addSum" >
+			insert into sum values(null, #{filmName}, #{totalCound} ,#{Ptime},#{roomName},#{ticketOffice})
+		</insert>
+		<select id="queryFilmName" resultType="Sum">
+			select * from sum where filmName=#{filmName} and Ptime=#{Ptime}
+		</select>
+		<select id="queryinfor" resultType="Sum">
+			select * from sum where id=#{id}
+		</select>
+		<update id="updateSum" parameterType="Sum">
+			update sum  
+			<set>
+				
+				<if test="totalCound != null">
+				totalCound=#{totalCound},
+				
+				</if>
+				<if test="roomName != null">
+				roomName=#{roomName},
+				
+				</if>
+				<if test="ticketOffice != null">
+				ticketOffice=#{ticketOffice},
+				</if>
+				
+			</set>
+			  where filmName=#{filmName} and Ptime=#{Ptime}
+		</update>
+</mapper>
